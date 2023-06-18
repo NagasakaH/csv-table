@@ -10,6 +10,6 @@
     "plugins": [{"name": "typescript-plugin-css-modules"}],
     "esModuleInterop": true
   },
-  "include": ["src"],
+  "include": ["src", "sample/csvTable.js"],
   "exclude": ["node_modules", "**/__tests__/*"]
 }

@@ -9,5 +9,9 @@ mkdocsにtableを埋め込む時などに使う
 
 
 ```html
-<img src="hogehoge.csv" />
+<body>
+  <img src="test.csv" alt="csv"/>
+  <script src="csvTable.js" type="text/javascript"></script>
+  <script>csvTable.csvTable();</script>
+</body>
 ```

@@ -10,8 +10,9 @@ const loadCSV = async (filePath: string, id: string, options?: Options) => {
   const csv = csvtojson();
   const text = await res.text();
   const data = await csv.fromString(text);
+  const targetId = `#${id}`;
   if (!options) {
-    const tabulator = new Tabulator('#csv-table', {
+    const tabulator = new Tabulator(`#${id}`, {
       data: data,
       autoColumns: true,
       layout: 'fitColumns',
@@ -35,11 +36,13 @@ export function csvTable(options: {filename: string; options?: Options}[]) {
       csvTable.id = 'csv-table' + i.toString();
       const parent = image.parentElement;
       parent?.replaceChild(csvTable, image);
-      const optionCandidates = options.filter(option => {
+      const optionCandidates = options?.filter(option => {
         return option.filename === image.src;
       });
       const selectedOptions =
-        optionCandidates.length > 0 ? optionCandidates[0] : undefined;
+        optionCandidates && optionCandidates.length > 0
+          ? optionCandidates[0]
+          : undefined;
       loadCSV(image.src, csvTable.id, selectedOptions?.options);
     }
   }
